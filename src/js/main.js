@@ -94,6 +94,94 @@ draw_reservoir();
 
 draw_future();
 
+// -----------------------------------------------------------------------------
+// DAMAGE animations --------------------------------------------------
+// -----------------------------------------------------------------------------
+
+var damage_images = ["oroville_DAMAGE1.png", "oroville_DAMAGE2.png","oroville_DAMAGE3.png","oroville_DAMAGE4.png"];
+
+var damage = document.getElementById('damage-graphic');
+var iD = 0;
+var looping_damage = true;
+
+var loop_damage = null;
+var tick = function() {
+  damage.src = "../assets/graphics/"+damage_images[iD];
+  iD = (iD + 1) % damage_images.length;
+  loop_damage = setTimeout(tick, iD == 0 ? 1700 : 1000);
+};
+
+tick();
+
+$(".start").click(function() {
+  if (looping) { return }
+  $(".start").addClass("selected");
+  $(".pause").removeClass("selected");
+  looping = true;
+  var i = 0;
+  tick();
+})
+
+$(".pause").click(function() {
+  if (!looping) { return }
+  $(".start").removeClass("selected");
+  $(".pause").addClass("selected");
+  looping = false;
+  clearTimeout(loop);
+})
+
+setTimeout( function(){
+  console.log("timed out");
+  looping = false;
+  clearTimeout(loop);
+}  , 60000 );
+
+// -----------------------------------------------------------------------------
+// EROSION animations --------------------------------------------------
+// -----------------------------------------------------------------------------
+
+var erosion_images = ["oroville_EROSION1.png", "oroville_EROSION2.png"];
+
+var erosion = document.getElementById('erosion-graphic');
+var iE = 0;
+var looping_erosion = true;
+
+var loop_erosion = null;
+var tickErosion = function() {
+  erosion.src = "../assets/graphics/"+erosion_images[iE];
+  iE = (iE + 1) % erosion_images.length;
+  loop_erosion = setTimeout(tickErosion, iE == 0 ? 1700 : 1000);
+};
+
+tickErosion();
+
+// $(".start").click(function() {
+//   if (looping) { return }
+//   $(".start").addClass("selected");
+//   $(".pause").removeClass("selected");
+//   looping = true;
+//   var i = 0;
+//   tick();
+// })
+//
+// $(".pause").click(function() {
+//   if (!looping) { return }
+//   $(".start").removeClass("selected");
+//   $(".pause").addClass("selected");
+//   looping = false;
+//   clearTimeout(loop);
+// })
+
+setTimeout( function(){
+  console.log("timed out");
+  looping_erosion = false;
+  clearTimeout(loop_erosion);
+}  , 60000 );
+
+// -----------------------------------------------------------------------------
+// FUNCTIONS to create charts --------------------------------------------------
+// -----------------------------------------------------------------------------
+
 function draw_chart(selectedData,flag,divID,flow_type) {
 
   // organize data by water year
