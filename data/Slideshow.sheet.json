@@ -1,0 +1,161 @@
+[
+  {
+    "slideID": 0,
+    "type": "title",
+    "image": "./assets/photos/oroville_now.jpg",
+    "credit": "California Department of Water Resources",
+    "hed": "What happened at Lake Oroville?",
+    "byline": "By <a href=\"mailto:eoneill@sfchronicle.com\">Emma O'Neill</a>, <a href=\"mailto:jblanchard@sfchronicle.com\">John Blanchard</a>, and <a href=\"mailto:kalexander@sfchronicle.com\">Kurtis Alexander</a>"
+  },
+  {
+    "slideID": 1,
+    "type": "second_title",
+    "image": "./assets/photos/oroville_now.jpg",
+    "chatter": "A wet winter brought to light problems at the nation’s tallest dam, which controls water delivered across the state. As storms raged in early February, dam operators released heavy flows down the Feather River, but a crisis began when a crater opened on the main spillway. Days later, water poured over an emergency spillway – essentially a hillside – that had never been used. The erosion of the hillside prompted the evacuation of nearly 200,000 people downstream."
+  },
+  {
+    "slideID": 2,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_FLOW1.png",
+    "image_text": "Oroville is in northern California."
+  },
+  {
+    "slideID": 3,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_FLOW2.png",
+    "image_text": "Water flows in from a bunch of places."
+  },
+  {
+    "slideID": 4,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_FLOW3.png",
+    "background": "/assets/photos/oroville_now.jpg",
+    "image_text": "Then it flows out through the river."
+  },
+  {
+    "slideID": 5,
+    "type": "image",
+    "image": "http://ww2.hdnux.com/photos/57/43/16/12465037/3/1000x0.jpg",
+    "image_text": "Nothing was flowing into Oroville during the drought."
+  },
+  {
+    "slideID": 6,
+    "type": "chart",
+    "background": "/assets/photos/oroville_now.jpg",
+    "year": "setup",
+    "image_text": "This was a big rain year."
+  },
+  {
+    "slideID": 7,
+    "type": "chart",
+    "year": 2017,
+    "flow_type": "Inflow",
+    "image_text": "Lake inflows this year were big."
+  },
+  {
+    "slideID": 8,
+    "type": "chart",
+    "year": "overlay",
+    "flow_type": "Outflow",
+    "image_text": "Operators increased outflows as the reservoir got close to filling."
+  },
+  {
+    "slideID": 9,
+    "type": "chart",
+    "year": 2017,
+    "flow_type": "Outflow",
+    "image_text": "Up to 150,000 cfs can be released without flooding downstream communities."
+  },
+  {
+    "slideID": 11,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_DAMAGE1.png",
+    "image_text": "Crisis looms as the spillway craters."
+  },
+  {
+    "slideID": 12,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_DAMAGE2.png"
+  },
+  {
+    "slideID": 13,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_DAMAGE3.png"
+  },
+  {
+    "slideID": 14,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_DAMAGE4.png"
+  },
+  {
+    "slideID": 15,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_EROSION1.png",
+    "image_text": "Erosion creeps toward the emergency spillway."
+  },
+  {
+    "slideID": 16,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_EROSION2.png"
+  },
+  {
+    "slideID": 17,
+    "type": "graphic",
+    "image": "./assets/graphics/oroville_EVACUATE.png",
+    "image_text": "That means they decided to evacuate people nearby."
+  },
+  {
+    "slideID": 18,
+    "type": "image",
+    "image": "https://hearst.merlinone.net/mx/thumbs2017/tdir16839/bx106_40d8_9.jpg",
+    "image_text": "This is a photo of the evacuated people."
+  },
+  {
+    "slideID": 19,
+    "type": "chart",
+    "year": "reservoir",
+    "flow_type": "Outflow",
+    "image_text": "Lake levels come down."
+  },
+  {
+    "slideID": 20,
+    "type": "image",
+    "image": "http://ww2.hdnux.com/photos/57/13/07/12366309/3/1024x1024.jpg",
+    "image_text": "Evacuees came home."
+  },
+  {
+    "slideID": 21,
+    "type": "image",
+    "image": "https://hearst.merlinone.net/mx/thumbs2017/tdir16901/ax212_3508_9.jpg",
+    "image_text": "The spillway can be repaired."
+  },
+  {
+    "slideID": 22,
+    "type": "chart",
+    "year": "future",
+    "image_text": "<div class='blocktext'>While dam managers have been able to sufficiently release water from the lake, through the damaged main spillway, they worry that future runoff could test their success. Snowpack in the mountains is near record highs, and as it melts this spring, the lake’s inflow is likely to be large. Most reservoirs in California are similarly at or near capacity and are releasing large amounts of water downstream.</div>"
+  },
+  {
+    "slideID": 23,
+    "type": "credits"
+  },
+  {
+    "slideID": 24,
+    "type": "graphic",
+    "image": "./assets/graphics/OROVILLE_OUTFLOW.png",
+    "image_text": "Look at all the ways water flows out of the reservoir."
+  },
+  {
+    "slideID": 25,
+    "type": "image",
+    "image": "https://hearst.merlinone.net/mx/thumbs2017/tdir16079/ax164_437b_9.jpg",
+    "image_text": "Look at all the water flowing out."
+  },
+  {
+    "slideID": 26,
+    "type": "chart",
+    "year": "2010-2016",
+    "flow_type": "Inflow",
+    "image_text": "Lake inflows during the drought."
+  }
+]

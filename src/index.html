@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.seo_title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="__sync_contentCategory" content="meterA">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+     <%= !json.project.embedded ? t.include("partials/_paywall.html") : t.include("partials/_embedframe.html") %>
+
+    <%= t.include("partials/_head.html") %>
+
+  </head>
+
+  <%= !json.project.embedded ? "<body>" : "<body is='responsive-body'>" %>
+
+      <%= t.include("partials/_nav.html") %>
+
+      <div class="outer">
+
+        <div class='background-img'>
+          <div class='over-img first'>
+            <div class='title'>
+              <div class='hed'>What happened at Lake Oroville?</div>
+              <div class='byline'>By <a href="mailto:eoneill@sfchronicle.com">Emma O'Neill</a>, <a href="mailto:jblanchard@sfchronicle.com">John Blanchard</a>, and <a href="mailto:kalexander@sfchronicle.com">Kurtis Alexander</a>
+              </div>
+            </div>
+            <%= t.include("partials/_title_social.html") %>
+          </div>
+        </div>
+
+        <div class='text-class'>
+          A wet winter brought to light problems at the nation’s tallest dam, which controls water delivered across the state. As storms raged in early February, dam operators released heavy flows down the Feather River, but a crisis began when a crater opened on the main spillway. Days later, water poured over an emergency spillway – essentially a hillside – that had never been used. The erosion of the hillside prompted the evacuation of nearly 200,000 people downstream.
+        </div>
+
+        <div class="graphic">
+          <div class='inline-image graphic'>
+            <img src='./assets/graphics/oroville_FLOW1.png'></img><img class='overlay' id='overlay'></img>
+          </div>
+        </div>
+
+        <div class='text-class'>
+          During the rainy season and the winter, rain water and snowmelt flow into Oroville from the mountains and then it flows out through the Feather River. During the past several years, there has not been a lot of rainfall nor snowmelt, so the system has been parched.
+        </div>
+
+        <div class="image">
+          <div class='inline-image'><img src='http://ww2.hdnux.com/photos/57/43/16/12465037/3/1000x0.jpg'></img></div><div class='caption'><span class='byline'>  Person Person</span></div>
+        </div>
+
+        <div class='text-class'>
+          This year has not been like the last years, though. After five years of drought, California was socked by one of its wettest winters in decades. The small city of Oroville saw nearly twice as much precipitation this rain year, through February, as last.
+        </div>
+
+        <div id="setup-chart"></div>
+
+        <div class='text-class'>
+          Winter storms in the mountains around Oroville generated a lot of runoff, which poured into the state-run reservoir. The reservoir swelled to its highest level in years.
+        </div>
+
+        <div id="inflow-chart"></div>
+        <div class="legend-container" id="legend-container">
+          <div class="element bold">Years: </div>
+          <div class="element"><div class="swath swath2010"><div class="legend-text">2010</div></div></div>
+          <div class="element"><div class="swath swath2011"><div class="legend-text">2011</div></div></div>
+          <div class="element"><div class="swath swath2012"><div class="legend-text">2012</div></div></div>
+          <div class="element"><div class="swath swath2013"><div class="legend-text">2013</div></div></div>
+          <div class="element"><div class="swath swath2014"><div class="legend-text">2014</div></div></div>
+          <div class="element"><div class="swath swath2015"><div class="legend-text">2015</div></div></div>
+          <div class="element"><div class="swath swath2016"><div class="legend-text">2016</div></div></div>
+          <div class="element" id="element2017"><div class="swath swath2017"><div class="legend-text">2017</div></div></div>
+        </div>
+
+        <div class='text-class'>
+          As the reservoir got closer to filling, operators increased outflows, at least until the lake’s main spillway cracked on Feb. 7.
+        </div>
+
+        <div class="legend-container" id="legend-container-overlay">
+          <div class="element long"><div class="swath long swathoutflow"><div class="legend-text long">2017 Outflow (kcfs)</div></div></div>
+          <div class="element long"><div class="swath long swathreservoir"><div class="legend-text long">Reservoir level (% full)</div></div></div>
+        </div>
+        <div id="overlay-chart"></div>
+
+        <div class='text-class'>
+          This is some text about how the outflows are fine and good except that if the outflow increases too much, there is a dangerous zone. Up to 150,000 cfs can be released without flooding downstream communities.
+        </div>
+
+        <div id="outflow-chart"></div>
+        <div class="legend-container" id="legend-container">
+          <div class="element bold">Years: </div>
+          <div class="element"><div class="swath swath2010"><div class="legend-text">2010</div></div></div>
+          <div class="element"><div class="swath swath2011"><div class="legend-text">2011</div></div></div>
+          <div class="element"><div class="swath swath2012"><div class="legend-text">2012</div></div></div>
+          <div class="element"><div class="swath swath2013"><div class="legend-text">2013</div></div></div>
+          <div class="element"><div class="swath swath2014"><div class="legend-text">2014</div></div></div>
+          <div class="element"><div class="swath swath2015"><div class="legend-text">2015</div></div></div>
+          <div class="element"><div class="swath swath2016"><div class="legend-text">2016</div></div></div>
+          <div class="element" id="element2017"><div class="swath swath2017"><div class="legend-text">2017</div></div></div>
+        </div>
+
+        <div class='text-class'>
+          Damage to the main spillway forced dam managers to rely on other ways to release water from the lake. The other outlets, however, were problematic. The Hyatt Powerplant, which can normally release a small amount of water, was taken off line after the main spillway cracked. Chunks of concrete from the broken spillway were causing water to pool up near the power plant, threatening to damage the turbines. The lake’s emergency spillway also failed. On Feb. 11, when lake water reached a certain height, water began pouring over the lip of the emergency chute and onto a hillside, which began to erode instead of carrying the overflow safely to the river. A set of river outlets, which hadn’t been fully used in years because of an accident there, was also inoperable. Pooling water from the damaged spillway covered the outtake pipes.
+        </div>
+
+        <div class="graphic">
+          <div class='inline-image graphic'>
+            <img src='./assets/graphics/oroville_DAMAGE1.png'></img>
+          </div>
+        </div>
+
+        <div class='text-class'>
+          Damage to the main spillway forced dam managers to rely on other ways to release water from the lake. The other outlets, however, were problematic. The Hyatt Powerplant, which can normally release a small amount of water, was taken off line after the main spillway cracked. Chunks of concrete from the broken spillway were causing water to pool up near the power plant, threatening to damage the turbines. The lake’s emergency spillway also failed. On Feb. 11, when lake water reached a certain height, water began pouring over the lip of the emergency chute and onto a hillside, which began to erode instead of carrying the overflow safely to the river. A set of river outlets, which hadn’t been fully used in years because of an accident there, was also inoperable. Pooling water from the damaged spillway covered the outtake pipes.
+        </div>
+
+        <div class="graphic">
+          <div class='inline-image graphic'>
+            <img src='./assets/graphics/oroville_EROSION1.png'></img>
+          </div>
+        </div>
+
+        <div class='text-class'>
+          This is some text about how the outflows are fine and good except that if the outflow increases too much, there is a dangerous zone. Up to 150,000 cfs can be released without flooding downstream communities.
+        </div>
+
+        <div class="graphic">
+          <div class='inline-image graphic'>
+            <img src='./assets/graphics/oroville_EVACUATE.png'></img>
+          </div>
+        </div>
+
+        <div class='text-class'>
+          This is some text about how the outflows are fine and good except that if the outflow increases too much, there is a dangerous zone. Up to 150,000 cfs can be released without flooding downstream communities.
+        </div>
+
+        <div class="image">
+          <div class='inline-image'><img src='https://hearst.merlinone.net/mx/thumbs2017/tdir16839/bx106_40d8_9.jpg'></img></div><div class='caption'><span class='byline'>  Person Person</span></div>
+        </div>
+
+        <div class='text-class'>
+          This is some text about the water level started to come down.
+        </div>
+
+        <div class="legend-container" id="legend-container-overlay">
+          <div class="element long"><div class="swath long swathoutflow"><div class="legend-text long">2017 Outflow (kcfs)</div></div></div>
+          <div class="element long"><div class="swath long swathreservoir"><div class="legend-text long">Reservoir level (% full)</div></div></div>
+        </div>
+        <div id="outflow2-chart"></div>
+
+        <div class='text-class'>
+          This is some text about the water level started to come down.
+        </div>
+
+        <div class="image">
+          <div class='inline-image'><img src='http://ww2.hdnux.com/photos/57/13/07/12366309/3/1024x1024.jpg'></img></div><div class='caption'><span class='byline'>  Person Person</span></div>
+        </div>
+
+        <div class='text-class'>
+          This is some text about the water level started to come down.
+        </div>
+
+        <div class="image">
+          <div class='inline-image'><img src='https://hearst.merlinone.net/mx/thumbs2017/tdir16901/ax212_3508_9.jpg'></img></div><div class='caption'><span class='byline'>  Person Person</span></div>
+        </div>
+
+
+
+        <div id="charts">
+
+        <div class="chart-top"></div>
+        <div class="graphic-top"></div>
+
+        <div class="snow-info" id="snow-info">Up-to-date snowpack level:<div id="snowpack-num"></div></div>
+
+        <div class="reservoir-info" id="reservoir-info">Up-to-date Oroville reservoir level:<div id="oroville-num"></div></div>
+
+        <div class="chart-container">
+          <div class="chart-text"></div>
+          <div class="chart-image"></div>
+          <div class="chart-info"></div>
+
+          <div id="chart" class="chart"></div>
+          <div id="reservoir-chart"></div>
+        </div>
+
+        <div class="legend-container" id="legend-container">
+          <div class="element bold">Years: </div>
+          <div class="element"><div class="swath swath2010"><div class="legend-text">2010</div></div></div>
+          <div class="element"><div class="swath swath2011"><div class="legend-text">2011</div></div></div>
+          <div class="element"><div class="swath swath2012"><div class="legend-text">2012</div></div></div>
+          <div class="element"><div class="swath swath2013"><div class="legend-text">2013</div></div></div>
+          <div class="element"><div class="swath swath2014"><div class="legend-text">2014</div></div></div>
+          <div class="element"><div class="swath swath2015"><div class="legend-text">2015</div></div></div>
+          <div class="element"><div class="swath swath2016"><div class="legend-text">2016</div></div></div>
+          <div class="element inactive" id="element2017"><div class="swath swath2017"><div class="legend-text">2017</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="credits-container">
+      <div class="divider"></div>
+
+      <div class="credits">
+      <h2>Credits</h2>
+      <div class="entry">Developers:  <br>Emma O'Neill  &bull; <a href="mailto:eoneill@sfchronicle.com">eoneill@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/emmaruthoneill" target="_blank">@emmaruthoneill</a>
+      <br>Lucio Villa  &bull; <a href="mailto:lvilla@sfchronicle.com">lvilla@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/luciovilla" target="_blank">@luciovilla</a></div>
+      <div class="entry">Graphic designer:  <br>John Blanchard &bull; <a href="mailto:jblanchard@sfchronicle.com">jblanchard@sfchronicle.com</a></div>
+      <div class="entry">Reporter:  <br>Kurtis Alexander &bull; <a href="mailto:kalexander@sfchronicle.com">kalexander@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/kurtisalexander" target="_blank">@kurtisalexander</a></div>
+      <div class="entry">Editors:  <br>Fernando Diaz  &bull; <a href="mailto:fdiaz@sfchronicle.com">fdiaz@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/thefuturewasnow" target="_blank">@thefuturewasnow</a>
+      <br>Demian Bulwa  &bull; <a href="mailto:dbulwa@sfchronicle.com">dbulwa@sfchronicle.com</a>   &bull; <a href = "https://twitter.com/demianbulwa" target="_blank">@demianbulwa</a>
+      <br>Danielle Mollette-Parks  &bull; <a href="mailto:DMollette-Parks@sfchronicle.com">DMollette-Parks@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/daniellemparks" target="_blank">@daniellemparks</a>
+      <br>Nicole Frugé  &bull; <a href="mailto:NFruge@sfchronicle.com">nfruge@sfchronicle.com</a>  &bull; <a href = "https://twitter.com/PhotoFruge" target="_blank">@PhotoFruge</a></div>
+      </div>
+
+      <div class="divider bottom"></div>
+
+      <div class="credits">
+        <h2>About the data</h2>
+        <div class="entry">Data is from <a href="http://cdec.water.ca.gov/" target="_blank">California Department of Water Resources.</a></div>
+      </div>
+
+    </div>
+
+
+
+
+    <script>
+      var waterData = <%= JSON.stringify(json.FlowData) %>;
+      var slideData = <%= JSON.stringify(json.Slideshow) %>;
+      var reservoirData = <%= JSON.stringify(json.ReservoirHeight) %>;
+      var rainData = <%= JSON.stringify(json.OrovilleRain) %>;
+      console.log(rainData);
+    </script>
+
+    <script src="app.js" async></script>
+    <%= t.include("partials/_helloSFC.html") %>
+
+  </body>
+</html>
