@@ -90,185 +90,11 @@ draw_chart(selectedData,0,"#outflow-chart","Outflow")
 
 draw_overlay();
 
+draw_reservoir();
+
 draw_future();
 
-// tracking which slide the reader is on
-var slide_id = 0;
-
-// tracking if we want to show the legend and which elements
-var legend = document.getElementById("legend-container");
-var legend_overlay = document.getElementById("legend-container-overlay");
-// var legend_final = document.getElementById("legend-container-final");
-var element_2017 = document.getElementById("element2017");
-var snow_text = document.getElementById("snow-info");
-var reservoir_text = document.getElementById("reservoir-info");
-var final_credits = document.getElementById("credits-container");
-var title_social = document.getElementById("title_social_links");
-
-// initialize slide
-// slide_lookup(0);
-
-// event listeners for the buttons
-// document.querySelector('#back').addEventListener('click', function(){
-//   console.log("click");
-//   document.getElementById("back").classList.remove("last");
-//   document.getElementById("back").classList.remove("hide");
-//   document.getElementById("forward").classList.remove("hide");
-//   if (slide_id > 0) {
-//     d3.select("#chart").select("svg").remove();
-//     d3.select("#reservoir-chart").select("svg").remove();
-//     document.getElementById("progress"+slide_id).classList.remove("active");
-//     slide_id = slide_id - 1;
-//     document.getElementById("progress"+slide_id).classList.add("active");
-//     slide_lookup(slide_id);
-//     $("html, body").animate({ scrollTop: 0 }, 200);
-//     document.getElementById("title_social_links").classList.remove("show");
-//   }
-//   console.log(slide_id);
-//   if (slide_id == 0) {
-//     document.getElementById("forward").classList.add("first");
-//     document.getElementById("back").classList.add("hide");
-//     document.getElementById("title_social_links").classList.add("show");
-//   }
-//   console.log(slide_id);
-// });
-
-// document.querySelector('#forward').addEventListener('click', function(){
-//   document.getElementById("forward").classList.remove("first");
-//   document.getElementById("back").classList.remove("hide");
-//   document.getElementById("forward").classList.remove("hide");
-//   document.getElementById("title_social_links").classList.remove("show");
-//   if (slide_id < slideData.length-1) {
-//     d3.select("#chart").select("svg").remove();
-//     d3.select("#reservoir-chart").select("svg").remove();
-//     document.getElementById("progress"+slide_id).classList.remove("active");
-//     slide_id = slide_id + 1;
-//     document.getElementById("progress"+slide_id).classList.add("active");
-//     slide_lookup(slide_id);
-//     $("html, body").animate({ scrollTop: 0 }, 200);
-//     // return false;
-//   }
-//   if (slide_id == slideData.length-1) {
-//     document.getElementById("back").classList.add("last");
-//     document.getElementById("forward").classList.add("hide");
-//   }
-//   console.log(slide_id);
-// });
-
-// event listener for each brewery that highlights the brewery on the map and calls the function to fill in the info at the top
-var qsa = s => Array.prototype.slice.call(document.querySelectorAll(s));
-qsa(".progress").forEach(function(group,index) {
-  group.addEventListener("click", function(e) {
-
-    d3.select("#chart").select("svg").remove();
-    d3.select("#reservoir-chart").select("svg").remove();
-
-    document.getElementById("title_social_links").classList.remove("show");
-    document.getElementById("forward").classList.remove("first");
-    document.getElementById("back").classList.remove("last");
-    document.getElementById("back").classList.remove("hide");
-    document.getElementById("forward").classList.remove("hide");
-
-    document.getElementById("progress"+slide_id).classList.remove("active");
-    slide_id = index;
-    document.getElementById("progress"+slide_id).classList.add("active");
-    slide_lookup(slide_id);
-    console.log(slide_id);
-    if (slide_id == 0) {
-      document.getElementById("forward").classList.add("first");
-      document.getElementById("back").classList.add("hide");
-      document.getElementById("title_social_links").classList.add("show");
-    }
-    if (slide_id == slideData.length-1) {
-      document.getElementById("back").classList.add("last");
-      document.getElementById("forward").classList.add("hide");
-    }
-    // $("html, body").animate({ scrollTop: 200 }, 200);
-    // return false;
-
-  });
-});
-
-function slide_lookup(id) {
-
-  // clear previous elements
-  d3.select("#chart").select("svg").remove();
-  d3.select("#reservoir-chart").select("svg").remove();
-  document.querySelector(".graphic-top").innerHTML = "";
-  document.querySelector(".chart-top").innerHTML = "";
-  document.querySelector(".chart-image").innerHTML = "";
-  legend.classList.remove("active");
-  legend_overlay.classList.remove("active");
-  // legend_final.classList.remove("active");
-  reservoir_text.classList.remove("active");
-  snow_text.classList.remove("active");
-  final_credits.classList.remove("active");
-
-  if (slideData[id]["type"] == "credits") {
-    final_credits.classList.add("active");
-  } else if (slideData[id]["type"] == "text") {
-    document.querySelector(".chart-text").innerHTML = slideData[id]["text"];
-  } else if (slideData[id]["type"] == "chart") {
-    // bar chart for beginning
-    if (slideData[id]["year"] == "setup") {
-      draw_intro();
-    } else if (slideData[id]["year"] == "reservoir") {
-      draw_reservoir();
-    // special chart with 2 y-axes
-   } else if (slideData[id]["year"] == "overlay") {
-      legend_overlay.classList.add("active");
-      draw_overlay();
-    // other charts that just show inflow / outflow data
-    } else {
-      if (slideData[id]["year"] == "future") {
-        draw_future();
-        // legend_final.classList.add("active");
-        reservoir_text.classList.add("active");
-        snow_text.classList.add("active");
-      } else if ((slideData[id]["year"]).length > 4) {
-        legend.classList.add("active");
-        var selectedData_filter1 = [];
-        waterData.forEach(function(data) {
-          if ((data.waterYear >= slideData[id]["year"].split("-")[0]) && (data.waterYear <= slideData[id]["year"].split("-")[1])) {
-            selectedData_filter1.push(data);
-          }
-        });
-        var selectedData = selectedData_filter1.filter(function(data) { return data.type == slideData[id]["flow_type"] });
-        var flag = 0;
-        element_2017.classList.add("inactive");
-        draw_chart(selectedData,flag);
-      } else {
-        legend.classList.add("active");
-        var selectedData = waterData.filter(function(data) { return data.type == slideData[id]["flow_type"] });
-        var flag = 1;
-        element_2017.classList.remove("inactive");
-        draw_chart(selectedData,flag);
-      }
-    }
-    document.querySelector(".chart-top").innerHTML = slideData[id]["image_text"];
-  } else if (slideData[id]["type"] == "graphic"){
-    console.log(slideData[id]["image_text"]);
-    document.querySelector(".chart-image").innerHTML = "<div class='inline-image graphic'><img src='"+slideData[id]["image"]+"'></img><img class='overlay' id='overlay'></img></div>";
-    document.querySelector(".graphic-top").innerHTML = "<div class='graphic-text'>"+slideData[id]["image_text"]+"</div>";
-  } else if (slideData[id]["type"] == "image") {
-    if (typeof(slideData[id]["image_text"]) == "undefined"){
-      document.querySelector(".chart-image").innerHTML = "<div class='inline-image'><img src='"+slideData[id]["image"]+"'></img></div><div class='caption'>"+"<span class='byline'>  "+slideData[id]["credit"]+"</span></div>";
-    } else {
-     document.querySelector(".chart-image").innerHTML = "<div class='graphic-text'>"+slideData[id]["image_text"]+"</div>"+"<div class='inline-image'><img src='"+slideData[id]["image"]+"'></img></div><div class='caption'>"+"<span>  "+slideData[id]["credit"]+"</span></div>";
-    }
-    if (typeof(slideData[id]["graphic-text"]) != "undefined"){
-      document.querySelector(".chart-top").innerHTML = "<div class='graphic-text'>"+slideData[id]["image_text"]+"</div>";
-    }
-  } else if (slideData[id]["type"] == "title"){
-    document.querySelector(".chart-image").innerHTML = "<div class='background-img'><div class='over-img first'><div class='title'><div class='hed'>" + slideData[id]["hed"] + "</div><div class='byline'>" + slideData[id]["byline"] + "</div></div></div>";
-  } else if (slideData[id]["type"] == "second_title"){
-    document.querySelector(".chart-image").innerHTML = "<div class='background-img'><div class='over-img second'><div class='chatter'>" + slideData[id]["chatter"] + "</div></div></div>";
-  }
-}
-
 function draw_chart(selectedData,flag,divID,flow_type) {
-
-  console.log(selectedData);
 
   // organize data by water year
   var FlowNested = d3.nest()
@@ -1568,7 +1394,7 @@ function draw_reservoir() {
     var height = 365 - margin.top - margin.bottom;
   }
   console.log(margin);
-  var svgOverlay = d3.select(".chart").append("svg")
+  var svgOverlay = d3.select("#outflow2-chart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
