@@ -13,9 +13,36 @@
   margin: auto;
 }
 
+.pad-class {
+  height: 100px;
+  @media @mobile {
+    height: 50px;
+  }
+}
+
 .chart-hed, .graphic-hed {
   font-family: @med-graphics;
   padding-bottom: 10px;
+  font-size: 25px;
+}
+
+.deck {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px 0;
+  font-size: 18px;
+  text-align: center;
+  @media @mobile {
+    padding: 20px 10px;
+    font-size: 16px;
+  }
+}
+
+.inline-image {
+  width: 100%;
+  img {
+    width: 100%;
+  }
 }
 
 .graphic, .inline-image {
@@ -28,6 +55,9 @@
   font-family: serif;
   padding: 100px 0;
   line-height: 1.2;
+  @media @mobile {
+    padding: 50px 20px;
+  }
 }
 
 .blocktext {
@@ -228,7 +258,7 @@ li{
 #legend-container-overlay {
   padding-top: 0 !important;
   @media @mobile {
-    padding-top: 10px !important;
+    padding: 10px !important;
   }
 }
 

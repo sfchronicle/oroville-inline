@@ -106,7 +106,7 @@ var looping_damage = true;
 
 var loop_damage = null;
 var tick = function() {
-  damage.src = "../assets/graphics/"+damage_images[iD];
+  damage.src = "./assets/graphics/"+damage_images[iD];
   iD = (iD + 1) % damage_images.length;
   loop_damage = setTimeout(tick, iD == 0 ? 1700 : 1000);
 };
@@ -148,7 +148,7 @@ var looping_erosion = true;
 
 var loop_erosion = null;
 var tickErosion = function() {
-  erosion.src = "../assets/graphics/"+erosion_images[iE];
+  erosion.src = "./assets/graphics/"+erosion_images[iE];
   iE = (iE + 1) % erosion_images.length;
   loop_erosion = setTimeout(tickErosion, iE == 0 ? 1700 : 1000);
 };
@@ -176,6 +176,48 @@ setTimeout( function(){
   console.log("timed out");
   looping_erosion = false;
   clearTimeout(loop_erosion);
+}  , 60000 );
+
+// -----------------------------------------------------------------------------
+// EROSION animations --------------------------------------------------
+// -----------------------------------------------------------------------------
+
+var flow_images = ["oroville_flow_01.png", "oroville_flow_02.png", "oroville_flow_03.png", "oroville_flow_04.png"];
+
+var flow = document.getElementById('flow-graphic');
+var iF = 0;
+var looping_flow = true;
+
+var loop_flow = null;
+var tickFlow = function() {
+  flow.src = "./assets/graphics/"+flow_images[iF];
+  iF = (iF + 1) % flow_images.length;
+  loop_flow = setTimeout(tickFlow, iF == 0 ? 1700 : 1000);
+};
+
+tickFlow();
+
+// $(".start").click(function() {
+//   if (looping) { return }
+//   $(".start").addClass("selected");
+//   $(".pause").removeClass("selected");
+//   looping = true;
+//   var i = 0;
+//   tick();
+// })
+//
+// $(".pause").click(function() {
+//   if (!looping) { return }
+//   $(".start").removeClass("selected");
+//   $(".pause").addClass("selected");
+//   looping = false;
+//   clearTimeout(loop);
+// })
+
+setTimeout( function(){
+  console.log("timed out");
+  looping_flow = false;
+  clearTimeout(loop_flow);
 }  , 60000 );
 
 // -----------------------------------------------------------------------------
