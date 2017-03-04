@@ -113,27 +113,10 @@ var tick = function() {
 
 tick();
 
-$(".start").click(function() {
-  if (looping) { return }
-  $(".start").addClass("selected");
-  $(".pause").removeClass("selected");
-  looping = true;
-  var i = 0;
-  tick();
-})
-
-$(".pause").click(function() {
-  if (!looping) { return }
-  $(".start").removeClass("selected");
-  $(".pause").addClass("selected");
-  looping = false;
-  clearTimeout(loop);
-})
-
 setTimeout( function(){
   console.log("timed out");
-  looping = false;
-  clearTimeout(loop);
+  looping_damage = false;
+  clearTimeout(loop_damage);
 }  , 60000 );
 
 // -----------------------------------------------------------------------------
@@ -155,23 +138,6 @@ var tickErosion = function() {
 
 tickErosion();
 
-// $(".start").click(function() {
-//   if (looping) { return }
-//   $(".start").addClass("selected");
-//   $(".pause").removeClass("selected");
-//   looping = true;
-//   var i = 0;
-//   tick();
-// })
-//
-// $(".pause").click(function() {
-//   if (!looping) { return }
-//   $(".start").removeClass("selected");
-//   $(".pause").addClass("selected");
-//   looping = false;
-//   clearTimeout(loop);
-// })
-
 setTimeout( function(){
   console.log("timed out");
   looping_erosion = false;
@@ -182,7 +148,7 @@ setTimeout( function(){
 // EROSION animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-var flow_images = ["oroville_flow_01.png", "oroville_flow_02.png", "oroville_flow_03.png", "oroville_flow_04.png"];
+var flow_images = ["oroville01.png", "oroville02.png", "oroville03.png"];
 
 var flow = document.getElementById('flow-graphic');
 var iF = 0;
@@ -196,23 +162,6 @@ var tickFlow = function() {
 };
 
 tickFlow();
-
-// $(".start").click(function() {
-//   if (looping) { return }
-//   $(".start").addClass("selected");
-//   $(".pause").removeClass("selected");
-//   looping = true;
-//   var i = 0;
-//   tick();
-// })
-//
-// $(".pause").click(function() {
-//   if (!looping) { return }
-//   $(".start").removeClass("selected");
-//   $(".pause").addClass("selected");
-//   looping = false;
-//   clearTimeout(loop);
-// })
 
 setTimeout( function(){
   console.log("timed out");

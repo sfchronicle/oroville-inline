@@ -13,6 +13,25 @@
   margin: auto;
 }
 
+.caption {
+  &.midsize {
+    max-width: 1000px;
+    margin: auto;
+  }
+}
+
+.header-wrapper-mobile {
+  display: none;
+  @media @mobile {
+    display: block;
+  }
+}
+.header-wrapper-desktop {
+  @media @mobile {
+    display: none;
+  }
+}
+
 .pad-class {
   height: 100px;
   @media @mobile {
@@ -43,6 +62,9 @@
   img {
     width: 100%;
   }
+  &.midsize {
+    max-width: 1000px;
+  }
 }
 
 .graphic, .inline-image {
@@ -71,26 +93,28 @@
 
 .social-wrapper {
   position: absolute;
-  // width: 100%;
-  // left: 0;
-  // right: 0;
-  // margin-left: auto;
-  // margin-right: auto;
-  // max-width:none;
-  // top: 200px;
-  // text-align: center;
-  // margin: auto;
   left: 48%;
   top: 30%;
   z-index: 10;
   display: none;
   @media @mobile {
-    left: 35%;
+    position: relative;
+    padding-top: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    float: center;
+    margin: auto;
+    // left: 35%;
   }
   &.show {
     display: block;
   }
   .link {
+    @media @mobile {
+      float: none !important;
+    }
     &:hover {
       color: @light-gray !important;
     }
@@ -99,6 +123,10 @@
       color: white;
       :hover {
         color: @light-gray !important;
+      }
+      @media @mobile {
+        font-size: 20px;
+        color: @dark-gray;
       }
     }
   }
@@ -264,14 +292,10 @@ li{
 
 .legend-container {
   max-width: 1000px;
-  // display: none;
-  // &.active {
-    .display-flex;
-    .flex-wrap(wrap);
-    justify-content: center;
-  // }
+  .display-flex;
+  .flex-wrap(wrap);
+  justify-content: center;
   padding: 20px 0;
-  // padding-left: 7%;
   font-size: 12px;
   font-family: @block-graphics;
   width: 100%;
@@ -279,7 +303,6 @@ li{
   text-align: center;
   margin-bottom: 10px;
   .element {
-    // width: 16%;
     .flex(0 0 10%);
     &.bold {
       font-size: 15px;
@@ -296,7 +319,7 @@ li{
       .flex(0 0 25%);
       font-size: 16px;
       @media @mobile {
-        .flex(0 0 100%);
+        .flex(0 0 90%);
         font-size: 14px;
       }
     }
@@ -658,19 +681,14 @@ svg {
   font-family: @med-graphics;
   padding-top: 50px;
   font-size: 30px;
-  @media @title-width{
-  padding:0;
-  margin:0;
-  font-size:25px;
-  }
   @media @mobile {
+    position: relative;
+    color: #333;
     padding: 0;
-    top:40px;
-    left:0;
-    margin:0;
-    line-heigt:1.4;
+    padding-top: 10px;
+    top: 0;
+    font-size: 26px;
   }
-
 }
 
 .byline {
@@ -685,23 +703,27 @@ svg {
   text-align: center;
   font-style: normal;
   font-size: 14px;
-  @media @title-width{
-  padding:0;
-  top:120px;
-  }
-
   @media @mobile {
+    position: relative;
+    color: #333;
     width: 70%;
     margin: auto;
+    top: 0;
+    padding-top: 10px;
   }
   color: white;
   a {
     color: white;
-    // color: black !important;
-    // color: white;
     text-decoration: underline;
     &:hover {
       color: @light-gray !important;
+    }
+    @media @mobile {
+      top: 0;
+      color: #333;
+      &:hover {
+        color: @dark-gray;
+      }
     }
   }
 }
