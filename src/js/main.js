@@ -1,6 +1,10 @@
 require("./lib/social"); //Do not delete
 var d3 = require('d3');
 
+window.addEventListener("orientationchange", function() {
+  window.location.reload();
+}, false);
+
 // parse date and time
 var parseDate = d3.time.format("%m/%d").parse;
 var	parseYr = d3.time.format("%Y").parse;
@@ -98,7 +102,7 @@ draw_future();
 // DAMAGE animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-var damage_images = ["oroville_DAMAGE1.png", "oroville_DAMAGE2.png","oroville_DAMAGE3.png","oroville_DAMAGE4.png"];
+var damage_images = ["oroville_DAMAGE3.png", "oroville_DAMAGE4.png","oroville_DAMAGE2.png"];
 
 var damage = document.getElementById('damage-graphic');
 var iD = 0;
@@ -106,9 +110,11 @@ var looping_damage = true;
 
 var loop_damage = null;
 var tick = function() {
+  setTimeout(() => $(damage).fadeOut(1200), 1500);
   damage.src = "./assets/graphics/"+damage_images[iD];
+  setTimeout(() => $(damage).fadeIn(1200), 1500);
   iD = (iD + 1) % damage_images.length;
-  loop_damage = setTimeout(tick, iD == 0 ? 1700 : 1000);
+  loop_damage = setTimeout(tick, iD == 0 ? 3000 : 3000);
 };
 
 tick();
@@ -117,38 +123,40 @@ setTimeout( function(){
   console.log("timed out");
   looping_damage = false;
   clearTimeout(loop_damage);
-}  , 60000 );
+}  , 600000 );
 
 // -----------------------------------------------------------------------------
 // EROSION animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-var erosion_images = ["oroville_EROSION1.png", "oroville_EROSION2.png"];
-
-var erosion = document.getElementById('erosion-graphic');
-var iE = 0;
-var looping_erosion = true;
-
-var loop_erosion = null;
-var tickErosion = function() {
-  erosion.src = "./assets/graphics/"+erosion_images[iE];
-  iE = (iE + 1) % erosion_images.length;
-  loop_erosion = setTimeout(tickErosion, iE == 0 ? 1700 : 1000);
-};
-
-tickErosion();
-
-setTimeout( function(){
-  console.log("timed out");
-  looping_erosion = false;
-  clearTimeout(loop_erosion);
-}  , 60000 );
+// var erosion_images = ["oroville_EROSION2.png", "oroville_EROSION1.png"];
+//
+// var erosion = document.getElementById('erosion-graphic');
+// var iE = 0;
+// var looping_erosion = true;
+//
+// var loop_erosion = null;
+// var tickErosion = function() {
+//   setTimeout(() => $(erosion).fadeOut(1000), 1000);
+//   erosion.src = "./assets/graphics/"+erosion_images[iE];
+//   setTimeout(() => $(erosion).fadeIn(1000), 1000);
+//   iE = (iE + 1) % erosion_images.length;
+//   loop_erosion = setTimeout(tickErosion, iE == 0 ? 3000 : 10000);
+// };
+//
+// tickErosion();
+//
+// setTimeout( function(){
+//   console.log("timed out");
+//   looping_erosion = false;
+//   clearTimeout(loop_erosion);
+// }  , 600000 );
 
 // -----------------------------------------------------------------------------
-// EROSION animations --------------------------------------------------
+// FLOW animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-var flow_images = ["oroville01.png", "oroville02.png", "oroville03.png"];
+var flow_images = ["oroville_overhead_inflowNEW.png", "oroville_overhead_base_allNEW.png", "oroville_overhead_outflowNEW.png"];
 
 var flow = document.getElementById('flow-graphic');
 var iF = 0;
@@ -156,9 +164,11 @@ var looping_flow = true;
 
 var loop_flow = null;
 var tickFlow = function() {
+  setTimeout(() => $(flow).fadeOut(1500), 1500);
   flow.src = "./assets/graphics/"+flow_images[iF];
+  setTimeout(() => $(flow).fadeIn(1500), 1500);
   iF = (iF + 1) % flow_images.length;
-  loop_flow = setTimeout(tickFlow, iF == 0 ? 1700 : 1000);
+  loop_flow = setTimeout(tickFlow, iF == 0 ? 3000 : 3000);
 };
 
 tickFlow();
@@ -167,7 +177,7 @@ setTimeout( function(){
   console.log("timed out");
   looping_flow = false;
   clearTimeout(loop_flow);
-}  , 60000 );
+}  , 600000 );
 
 // -----------------------------------------------------------------------------
 // FUNCTIONS to create charts --------------------------------------------------
