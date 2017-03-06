@@ -110,9 +110,9 @@ var looping_damage = true;
 
 var loop_damage = null;
 var tick = function() {
-  setTimeout(() => $(damage).fadeOut(1200), 1500);
+  setTimeout(() => $(damage).fadeOut(1500), 1500);
   damage.src = "./assets/graphics/"+damage_images[iD];
-  setTimeout(() => $(damage).fadeIn(1200), 1500);
+  setTimeout(() => $(damage).fadeIn(1500), 1500);
   iD = (iD + 1) % damage_images.length;
   loop_damage = setTimeout(tick, iD == 0 ? 3000 : 3000);
 };
@@ -156,7 +156,7 @@ setTimeout( function(){
 // FLOW animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-var flow_images = ["oroville_overhead_inflowNEW.png", "oroville_overhead_base_allNEW.png", "oroville_overhead_outflowNEW.png"];
+var flow_images = ["oroville_overhead_inflowNEW.png", "oroville_overhead_outflowNEW.png"];
 
 var flow = document.getElementById('flow-graphic');
 var iF = 0;
@@ -1014,6 +1014,7 @@ function draw_future() {
 
     // create SVG container for chart components
     margin.bottom = 150;
+    margin.left = 40;
   	var svgBars = d3.select("#future-chart").append("svg")
   			.attr("width", width + margin.left + margin.right)
   			.attr("height", height + margin.top + margin.bottom)
