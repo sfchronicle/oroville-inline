@@ -101,29 +101,78 @@ draw_future();
 // -----------------------------------------------------------------------------
 // DAMAGE animations --------------------------------------------------
 // -----------------------------------------------------------------------------
+//
+// var damage_images = ["oroville_DAMAGE3.png", "oroville_DAMAGE4.png","oroville_DAMAGE2.png"];
+//
+// var damage = document.getElementById('damage-graphic');
+// var iD = 0;
+// var looping_damage = true;
+//
+// var loop_damage = null;
+// var tick = function() {
+//   setTimeout(() => $(damage).fadeOut(1500), 1500);
+//   damage.src = "./assets/graphics/"+damage_images[iD];
+//   setTimeout(() => $(damage).fadeIn(1500), 1500);
+//   iD = (iD + 1) % damage_images.length;
+//   loop_damage = setTimeout(tick, iD == 0 ? 3000 : 3000);
+// };
+//
+// tick();
+//
+// setTimeout( function(){
+//   console.log("timed out");
+//   looping_damage = false;
+//   clearTimeout(loop_damage);
+// }  , 600000 );
 
-var damage_images = ["oroville_DAMAGE3.png", "oroville_DAMAGE4.png","oroville_DAMAGE2.png"];
-
-var damage = document.getElementById('damage-graphic');
+var damage = $("#damage-graphic");
 var iD = 0;
-var looping_damage = true;
+//prepend the assets folder to these
+var urls = ["oroville_DAMAGE3.png", "oroville_DAMAGE4.png","oroville_DAMAGE2.png"].map(s => "./assets/graphics/" + s);
 
-var loop_damage = null;
-var tick = function() {
-  setTimeout(() => $(damage).fadeOut(1500), 1500);
-  damage.src = "./assets/graphics/"+damage_images[iD];
-  setTimeout(() => $(damage).fadeIn(1500), 1500);
-  iD = (iD + 1) % damage_images.length;
-  loop_damage = setTimeout(tick, iD == 0 ? 3000 : 3000);
+//callback version
+var swap = function() {
+  damage.fadeOut(1200, function() {
+    //change the image and wait for it to load
+    var src = damage.attr("src"); // hopefully this will match the URLs now, may need to log
+    //get the next image
+    iD = (iD + 1) % urls.length; // hello modulo, my old friend
+    //update the src
+    damage.attr("src", urls[iD]);
+    //fade in once it's loaded
+    damage.one("load", function() {
+      //once fade completes, schedule the next swap
+      damage.fadeIn(1200, () => setTimeout(swap, 1500));
+    });
+  })
 };
 
-tick();
+//promise version
+var swap = function() {
+  //start the chain
+  damage.fadeOut(1200).promise().then(function() {
+    //set the new src, then return a promise that's resolved on image load
+    var src = damage.attr("src");
+    //get the next image
+    iD = (iD + 1) % urls.length; // hello modulo, my old friend
+    //update the src
+    damage.attr("src", urls[iD]);
+    //resolve this promise on load
+    var loaded = $.Deferred();
+    damage.one("load", () => loaded.resolve());
+    return loaded.promise();
+  }).then(function() {
+    //now fade in and wait for that to conclude
+    return damage.fadeIn(1200).promise();
+  }).then(function() {
+    //schedule the next animation
+    setTimeout(swap, 1500);
+  })
+};
 
-setTimeout( function(){
-  console.log("timed out");
-  looping_damage = false;
-  clearTimeout(loop_damage);
-}  , 600000 );
+//either way
+setTimeout(swap, 1500);
+
 
 // -----------------------------------------------------------------------------
 // EROSION animations --------------------------------------------------
@@ -156,28 +205,76 @@ setTimeout( function(){
 // FLOW animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-var flow_images = ["oroville_overhead_inflowNEW.png", "oroville_overhead_outflowNEW.png"];
+// var flow_images = ["oroville_overhead_inflowNEW.png", "oroville_overhead_outflowNEW.png"];
+//
+// var flow = document.getElementById('flow-graphic');
+// var iF = 0;
+// var looping_flow = true;
+//
+// var loop_flow = null;
+// var tickFlow = function() {
+//   setTimeout(() => $(flow).fadeOut(1500), 1500);
+//   flow.src = "./assets/graphics/"+flow_images[iF];
+//   setTimeout(() => $(flow).fadeIn(1500), 1500);
+//   iF = (iF + 1) % flow_images.length;
+//   loop_flow = setTimeout(tickFlow, iF == 0 ? 3000 : 3000);
+// };
+//
+// tickFlow();
+//
+// setTimeout( function(){
+//   console.log("timed out");
+//   looping_flow = false;
+//   clearTimeout(loop_flow);
+// }  , 600000 );
 
-var flow = document.getElementById('flow-graphic');
+var flow = $("#flow-graphic");
 var iF = 0;
-var looping_flow = true;
+//prepend the assets folder to these
+var flow_urls = ["oroville_overhead_inflowNEW.png", "oroville_overhead_outflowNEW.png"].map(s => "./assets/graphics/" + s);
 
-var loop_flow = null;
-var tickFlow = function() {
-  setTimeout(() => $(flow).fadeOut(1500), 1500);
-  flow.src = "./assets/graphics/"+flow_images[iF];
-  setTimeout(() => $(flow).fadeIn(1500), 1500);
-  iF = (iF + 1) % flow_images.length;
-  loop_flow = setTimeout(tickFlow, iF == 0 ? 3000 : 3000);
+//callback version
+var swap_flow = function() {
+  flow.fadeOut(1200, function() {
+    //change the image and wait for it to load
+    var src = flow.attr("src"); // hopefully this will match the URLs now, may need to log
+    //get the next image
+    iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
+    //update the src
+    flow.attr("src", flow_urls[iF]);
+    //fade in once it's loaded
+    flow.one("load", function() {
+      //once fade completes, schedule the next swap
+      flow.fadeIn(1200, () => setTimeout(swap_flow, 1500));
+    });
+  })
 };
 
-tickFlow();
+//promise version
+var swap_flow = function() {
+  //start the chain
+  flow.fadeOut(1200).promise().then(function() {
+    //set the new src, then return a promise that's resolved on image load
+    var src = flow.attr("src");
+    //get the next image
+    iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
+    //update the src
+    flow.attr("src", flow_urls[iF]);
+    //resolve this promise on load
+    var loaded = $.Deferred();
+    flow.one("load", () => loaded.resolve());
+    return loaded.promise();
+  }).then(function() {
+    //now fade in and wait for that to conclude
+    return flow.fadeIn(1200).promise();
+  }).then(function() {
+    //schedule the next animation
+    setTimeout(swap_flow, 1500);
+  })
+};
 
-setTimeout( function(){
-  console.log("timed out");
-  looping_flow = false;
-  clearTimeout(loop_flow);
-}  , 600000 );
+//either way
+setTimeout(swap_flow, 1500);
 
 // -----------------------------------------------------------------------------
 // FUNCTIONS to create charts --------------------------------------------------
@@ -344,19 +441,19 @@ function draw_chart(selectedData,flag,divID,flow_type) {
           })
           .attr("text-anchor", "middle")
           .style("font-size", "13px")
-          .text("This is the dangerous zone.");
+          .text("Danger zone");
 
     } else {
       svgFlow.append("text")
           .attr("x", function(d) {
-            return x(parseFullDate("07/31/2016"));
+            return x(parseFullDate("08/20/2016"));
           })
           .attr("y", function(d) {
             return y(152);
           })
           .attr("text-anchor", "middle")
           .style("font-size", "13px")
-          .text("This is the dangerous zone.");
+          .text("Danger zone");
     }
 
   }
@@ -413,9 +510,9 @@ function draw_chart(selectedData,flag,divID,flow_type) {
         // .style("font-style","italic")
         .text(function(d) {
             if ((d.DateString == "3/20/11") && (flow_type == "Outflow")){
-                return "2011 snow melt requires outflow";
+                return "2011 snowmelt also required outflow";
             } else if ((d.DateString == "2/13/17") && (flow_type == "Outflow")){
-                return "Storms cause outflow this February";
+                return "Storms prompt outflow this February";
             } else if ((d.DateString == "2/9/17") && (flow_type == "Inflow")){
                 return "Big storms bring lots of water this year";
             } else {
@@ -445,9 +542,9 @@ function draw_chart(selectedData,flag,divID,flow_type) {
         // .style("font-style","italic")
         .text(function(d) {
             if ((d.DateString == "3/20/11") && (flow_type == "Outflow")){
-                return "Snow melt in 2011 required big outflows";
+                return "Snowmelt in 2011 also required big outflows";
             } else if ((d.DateString == "2/13/17") && (flow_type == "Outflow")){
-                return "Storms cause increased outflow this February";
+                return "Storms prompt increased outflow this February";
             } else if ((d.DateString == "2/9/17") && (flow_type == "Inflow")){
                 return "Big storms bring lots of water to the reservoir this year";
             } else {
