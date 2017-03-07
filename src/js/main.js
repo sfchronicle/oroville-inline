@@ -101,40 +101,18 @@ draw_future();
 // -----------------------------------------------------------------------------
 // DAMAGE animations --------------------------------------------------
 // -----------------------------------------------------------------------------
-//
-// var damage_images = ["oroville_DAMAGE3.png", "oroville_DAMAGE4.png","oroville_DAMAGE2.png"];
-//
-// var damage = document.getElementById('damage-graphic');
-// var iD = 0;
-// var looping_damage = true;
-//
-// var loop_damage = null;
-// var tick = function() {
-//   setTimeout(() => $(damage).fadeOut(1500), 1500);
-//   damage.src = "./assets/graphics/"+damage_images[iD];
-//   setTimeout(() => $(damage).fadeIn(1500), 1500);
-//   iD = (iD + 1) % damage_images.length;
-//   loop_damage = setTimeout(tick, iD == 0 ? 3000 : 3000);
-// };
-//
-// tick();
-//
-// setTimeout( function(){
-//   console.log("timed out");
-//   looping_damage = false;
-//   clearTimeout(loop_damage);
-// }  , 600000 );
 
+var fadeTime = 1000;
+var timeoutTime = 1100;
 var damage = $("#damage-graphic");
 var iD = 0;
-//prepend the assets folder to these
+
+// these are the images
 var urls = ["oroville_DAMAGE3.jpg", "oroville_DAMAGE4.jpg","oroville_DAMAGE2.jpg"].map(s => "./assets/graphics/" + s);
 
-//callback version
+// callback version
 var swap = function() {
-  damage.fadeOut(1200, function() {
-    //change the image and wait for it to load
-    var src = damage.attr("src"); // hopefully this will match the URLs now, may need to log
+  damage.fadeOut(fadeTime, function() {
     //get the next image
     iD = (iD + 1) % urls.length; // hello modulo, my old friend
     //update the src
@@ -142,7 +120,7 @@ var swap = function() {
     //fade in once it's loaded
     damage.one("load", function() {
       //once fade completes, schedule the next swap
-      damage.fadeIn(1200, () => setTimeout(swap, 1500));
+      damage.fadeIn(fadeTime, () => setTimeout(swap, timoutTime));
     });
   })
 };
@@ -150,9 +128,7 @@ var swap = function() {
 //promise version
 var swap = function() {
   //start the chain
-  damage.fadeOut(1200).promise().then(function() {
-    //set the new src, then return a promise that's resolved on image load
-    var src = damage.attr("src");
+  damage.fadeOut(fadeTime).promise().then(function() {
     //get the next image
     iD = (iD + 1) % urls.length; // hello modulo, my old friend
     //update the src
@@ -163,43 +139,63 @@ var swap = function() {
     return loaded.promise();
   }).then(function() {
     //now fade in and wait for that to conclude
-    return damage.fadeIn(1200).promise();
+    return damage.fadeIn(fadeTime).promise();
   }).then(function() {
     //schedule the next animation
-    setTimeout(swap, 1500);
+    setTimeout(swap, timeoutTime);
   })
 };
 
 //either way
-setTimeout(swap, 1500);
-
+setTimeout(swap, timeoutTime);
 
 // -----------------------------------------------------------------------------
 // EROSION animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-// var erosion_images = ["oroville_EROSION2.png", "oroville_EROSION1.png"];
-//
-// var erosion = document.getElementById('erosion-graphic');
-// var iE = 0;
-// var looping_erosion = true;
-//
-// var loop_erosion = null;
-// var tickErosion = function() {
-//   setTimeout(() => $(erosion).fadeOut(1000), 1000);
-//   erosion.src = "./assets/graphics/"+erosion_images[iE];
-//   setTimeout(() => $(erosion).fadeIn(1000), 1000);
-//   iE = (iE + 1) % erosion_images.length;
-//   loop_erosion = setTimeout(tickErosion, iE == 0 ? 3000 : 10000);
-// };
-//
-// tickErosion();
-//
-// setTimeout( function(){
-//   console.log("timed out");
-//   looping_erosion = false;
-//   clearTimeout(loop_erosion);
-// }  , 600000 );
+var erosion = $("#erosion-graphic");
+var iE = 0;
+//prepend the assets folder to these
+var erosion_urls = ["reservoirs_slideshow_erosion_1_NEW.png","reservoirs_slideshow_erosion_2_NEW.png"].map(s => "./assets/graphics/" + s);
+
+//callback version
+var swap_erosion = function() {
+  erosion.fadeOut(fadeTime, function() {
+    //get the next image
+    iE = (iE + 1) % erosion_urls.length; // hello modulo, my old friend
+    //update the src
+    erosion.attr("src", erosion_urls[iE]);
+    //fade in once it's loaded
+    erosion.one("load", function() {
+      //once fade completes, schedule the next swap
+      erosion.fadeIn(fadeTime, () => setTimeout(swap_erosion, timeoutTime));
+    });
+  })
+};
+
+//promise version
+var swap_erosion = function() {
+  //start the chain
+  erosion.fadeOut(fadeTime).promise().then(function() {
+    //get the next image
+    iE = (iE + 1) % erosion_urls.length; // hello modulo, my old friend
+    //update the src
+    erosion.attr("src", erosion_urls[iE]);
+    //resolve this promise on load
+    var loaded = $.Deferred();
+    erosion.one("load", () => loaded.resolve());
+    return loaded.promise();
+  }).then(function() {
+    //now fade in and wait for that to conclude
+    return erosion.fadeIn(fadeTime).promise();
+  }).then(function() {
+    //schedule the next animation
+    setTimeout(swap_erosion, timeoutTime);
+  })
+};
+
+//either way
+setTimeout(swap_erosion, timeoutTime);
 
 // -----------------------------------------------------------------------------
 // FLOW animations --------------------------------------------------
@@ -212,9 +208,7 @@ var flow_urls = ["oroville_overhead_inflowNEW.jpg", "oroville_overhead_outflowNE
 
 //callback version
 var swap_flow = function() {
-  flow.fadeOut(1200, function() {
-    //change the image and wait for it to load
-    var src = flow.attr("src"); // hopefully this will match the URLs now, may need to log
+  flow.fadeOut(fadeTime, function() {
     //get the next image
     iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
     //update the src
@@ -222,7 +216,7 @@ var swap_flow = function() {
     //fade in once it's loaded
     flow.one("load", function() {
       //once fade completes, schedule the next swap
-      flow.fadeIn(1200, () => setTimeout(swap_flow, 1500));
+      flow.fadeIn(fadeTime, () => setTimeout(swap_flow, timeoutTime));
     });
   })
 };
@@ -230,9 +224,7 @@ var swap_flow = function() {
 //promise version
 var swap_flow = function() {
   //start the chain
-  flow.fadeOut(1200).promise().then(function() {
-    //set the new src, then return a promise that's resolved on image load
-    var src = flow.attr("src");
+  flow.fadeOut(fadeTime).promise().then(function() {
     //get the next image
     iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
     //update the src
@@ -243,15 +235,15 @@ var swap_flow = function() {
     return loaded.promise();
   }).then(function() {
     //now fade in and wait for that to conclude
-    return flow.fadeIn(1200).promise();
+    return flow.fadeIn(fadeTime).promise();
   }).then(function() {
     //schedule the next animation
-    setTimeout(swap_flow, 1500);
+    setTimeout(swap_flow, timeoutTime);
   })
 };
 
 //either way
-setTimeout(swap_flow, 1500);
+setTimeout(swap_flow, timeoutTime);
 
 // -----------------------------------------------------------------------------
 // FUNCTIONS to create charts --------------------------------------------------
@@ -414,7 +406,7 @@ function draw_chart(selectedData,flag,divID,flow_type) {
             return x(parseFullDate("06/05/2016"));
           })
           .attr("y", function(d) {
-            return y(152);
+            return y(153);
           })
           .attr("text-anchor", "middle")
           .style("font-size", "13px")
@@ -426,7 +418,7 @@ function draw_chart(selectedData,flag,divID,flow_type) {
             return x(parseFullDate("08/20/2016"));
           })
           .attr("y", function(d) {
-            return y(152);
+            return y(153);
           })
           .attr("text-anchor", "middle")
           .style("font-size", "13px")
