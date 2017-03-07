@@ -156,7 +156,7 @@ setTimeout(swap, timeoutTime);
 var erosion = $("#erosion-graphic");
 var iE = 0;
 //prepend the assets folder to these
-var erosion_urls = ["reservoirs_slideshow_erosion_1_NEW.png","reservoirs_slideshow_erosion_2_NEW.png"].map(s => "./assets/graphics/" + s);
+var erosion_urls = ["reservoirs_slideshow_erosion_1_NEW.jpg","reservoirs_slideshow_erosion_2_NEW.jpg"].map(s => "./assets/graphics/" + s);
 
 //callback version
 var swap_erosion = function() {
