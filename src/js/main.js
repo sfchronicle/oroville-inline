@@ -128,7 +128,7 @@ draw_future();
 var damage = $("#damage-graphic");
 var iD = 0;
 //prepend the assets folder to these
-var urls = ["oroville_DAMAGE3.png", "oroville_DAMAGE4.png","oroville_DAMAGE2.png"].map(s => "./assets/graphics/" + s);
+var urls = ["oroville_DAMAGE3.jpg", "oroville_DAMAGE4.jpg","oroville_DAMAGE2.jpg"].map(s => "./assets/graphics/" + s);
 
 //callback version
 var swap = function() {
@@ -205,33 +205,10 @@ setTimeout(swap, 1500);
 // FLOW animations --------------------------------------------------
 // -----------------------------------------------------------------------------
 
-// var flow_images = ["oroville_overhead_inflowNEW.png", "oroville_overhead_outflowNEW.png"];
-//
-// var flow = document.getElementById('flow-graphic');
-// var iF = 0;
-// var looping_flow = true;
-//
-// var loop_flow = null;
-// var tickFlow = function() {
-//   setTimeout(() => $(flow).fadeOut(1500), 1500);
-//   flow.src = "./assets/graphics/"+flow_images[iF];
-//   setTimeout(() => $(flow).fadeIn(1500), 1500);
-//   iF = (iF + 1) % flow_images.length;
-//   loop_flow = setTimeout(tickFlow, iF == 0 ? 3000 : 3000);
-// };
-//
-// tickFlow();
-//
-// setTimeout( function(){
-//   console.log("timed out");
-//   looping_flow = false;
-//   clearTimeout(loop_flow);
-// }  , 600000 );
-
 var flow = $("#flow-graphic");
 var iF = 0;
 //prepend the assets folder to these
-var flow_urls = ["oroville_overhead_inflowNEW.png", "oroville_overhead_outflowNEW.png"].map(s => "./assets/graphics/" + s);
+var flow_urls = ["oroville_overhead_inflowNEW.jpg", "oroville_overhead_outflowNEW.jpg"].map(s => "./assets/graphics/" + s);
 
 //callback version
 var swap_flow = function() {
