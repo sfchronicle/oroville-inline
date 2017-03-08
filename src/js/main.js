@@ -1,9 +1,9 @@
 require("./lib/social"); //Do not delete
 var d3 = require('d3');
 
-window.addEventListener("orientationchange", function() {
-  window.location.reload();
-}, false);
+// window.addEventListener("orientationchange", function() {
+//   window.location.reload();
+// }, false);
 
 // parse date and time
 var parseDate = d3.time.format("%m/%d").parse;
