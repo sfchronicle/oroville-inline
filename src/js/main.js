@@ -124,27 +124,6 @@ var swap = function() {
     });
   })
 };
-//
-// //promise version
-// var swap = function() {
-//   //start the chain
-//   damage.fadeOut(fadeTime).promise().then(function() {
-//     //get the next image
-//     iD = (iD + 1) % urls.length; // hello modulo, my old friend
-//     //update the src
-//     damage.attr("src", urls[iD]);
-//     //resolve this promise on load
-//     var loaded = $.Deferred();
-//     damage.one("load", () => loaded.resolve());
-//     return loaded.promise();
-//   }).then(function() {
-//     //now fade in and wait for that to conclude
-//     return damage.fadeIn(fadeTime).promise();
-//   }).then(function() {
-//     //schedule the next animation
-//     setTimeout(swap, timeoutTime);
-//   })
-// };
 
 //either way
 setTimeout(swap, timeoutTime);
@@ -173,27 +152,6 @@ var swap_erosion = function() {
   })
 };
 
-// //promise version
-// var swap_erosion = function() {
-//   //start the chain
-//   erosion.fadeOut(fadeTime).promise().then(function() {
-//     //get the next image
-//     iE = (iE + 1) % erosion_urls.length; // hello modulo, my old friend
-//     //update the src
-//     erosion.attr("src", erosion_urls[iE]);
-//     //resolve this promise on load
-//     var loaded = $.Deferred();
-//     erosion.one("load", () => loaded.resolve());
-//     return loaded.promise();
-//   }).then(function() {
-//     //now fade in and wait for that to conclude
-//     return erosion.fadeIn(fadeTime).promise();
-//   }).then(function() {
-//     //schedule the next animation
-//     setTimeout(swap_erosion, timeoutTime);
-//   })
-// };
-
 //either way
 setTimeout(swap_erosion, timeoutTime);
 
@@ -220,27 +178,6 @@ var swap_flow = function() {
     });
   })
 };
-
-// //promise version
-// var swap_flow = function() {
-//   //start the chain
-//   flow.fadeOut(fadeTime).promise().then(function() {
-//     //get the next image
-//     iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
-//     //update the src
-//     flow.attr("src", flow_urls[iF]);
-//     //resolve this promise on load
-//     var loaded = $.Deferred();
-//     flow.one("load", () => loaded.resolve());
-//     return loaded.promise();
-//   }).then(function() {
-//     //now fade in and wait for that to conclude
-//     return flow.fadeIn(fadeTime).promise();
-//   }).then(function() {
-//     //schedule the next animation
-//     setTimeout(swap_flow, timeoutTime);
-//   })
-// };
 
 //either way
 setTimeout(swap_flow, timeoutTime);
