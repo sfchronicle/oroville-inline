@@ -1059,7 +1059,7 @@ function draw_future() {
   d3.json("http://extras.sfgate.com/editorial/droughtwatch/reservoirs.json", function(barData){
 
     barData.data.forEach(function(d){
-      d.name = titleCase(d.name);
+      d.name = titleCase(d.name).split('(')[0];
     });
 
     // x-axis scale
@@ -1084,9 +1084,9 @@ function draw_future() {
   			.tickFormat(d3.format(".2s"));
 
     // create SVG container for chart components
-    margin.bottom = 150;
+    margin.bottom = 100;
     if (screen.width <= 480) {
-      margin.bottom = 130;
+      margin.bottom = 80;
     }
     margin.left = 40;
   	var svgBars = d3.select("#future-chart").append("svg")
