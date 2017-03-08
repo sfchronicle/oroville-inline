@@ -78,7 +78,7 @@ if (screen.width > 768) {
     top: 20,
     right: 20,
     bottom: 35,
-    left: 40
+    left: 35
   };
   var width = 310 - margin.left - margin.right;
   var height = 350 - margin.top - margin.bottom;
@@ -301,7 +301,7 @@ function draw_chart(selectedData,flag,divID,flow_type) {
       top: 20,
       right: 20,
       bottom: 35,
-      left: 40
+      left: 35
     };
     var width = 310 - margin.left - margin.right;
     var height = 350 - margin.top - margin.bottom;
@@ -453,7 +453,11 @@ function draw_chart(selectedData,flag,divID,flow_type) {
               rreturn (x(d.Date)+20);
             }
           } else {
-            return (x(d.Date)-50);
+            if ((screen.width <= 480) && (d.DateString == "3/20/11") && (flow_type == "Outflow")) {
+              return (x(d.Date)-70)
+            } else {
+              return (x(d.Date)-50);
+            }
           }
         })
         .attr("y", function(d) {
@@ -702,9 +706,9 @@ function draw_overlay() {
     console.log("mini iphone")
     var margin = {
       top: 20,
-      right: 60,
+      right: 55,
       bottom: 50,
-      left: 30
+      left: 32
     };
     var width = 310 - margin.left - margin.right;
     var height = 350 - margin.top - margin.bottom;
@@ -755,6 +759,7 @@ function draw_overlay() {
 
   var yAxisRightHeight = d3.svg.axis().scale(yRightHeight)
       .orient("right")
+      .ticks(5);
 
   xMonth.domain([parseFullDate('10/01/2016'), parseFullDate('03/01/2017')]);
   yInflow.domain([0,140]);
@@ -1080,6 +1085,9 @@ function draw_future() {
 
     // create SVG container for chart components
     margin.bottom = 150;
+    if (screen.width <= 480) {
+      margin.bottom = 130;
+    }
     margin.left = 40;
   	var svgBars = d3.select("#future-chart").append("svg")
   			.attr("width", width + margin.left + margin.right)
@@ -1197,7 +1205,7 @@ function draw_intro() {
       top: 20,
       right: 20,
       bottom: 70,
-      left: 40
+      left: 43
     };
     var width = 310 - margin.left - margin.right;
     var height = 360 - margin.top - margin.bottom;
@@ -1595,6 +1603,7 @@ function draw_reservoir() {
 
   var yAxisRightHeight = d3.svg.axis().scale(yRightHeight)
       .orient("right")
+      .ticks(5);
 
   xMonth.domain([parseFullDate('01/01/2017'), parseFullDate('03/01/2017')]);
   yInflow.domain([0,140]);
@@ -1696,7 +1705,7 @@ function draw_reservoir() {
           if (d.DateString == "2/10/17") {
             return (xMonth(d.Date)-175);
           } else {
-            return (xMonth(d.Date)-135);
+            return (xMonth(d.Date)-130);
           }
         })
         .attr("y", function(d) {
