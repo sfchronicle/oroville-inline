@@ -105,7 +105,7 @@ draw_future();
 var fadeTime = 1000;
 var timeoutTime = 1100;
 var damage = $("#damage-graphic");
-var iD = 0;
+var iD = -1;
 
 // these are the images
 var urls = ["oroville_DAMAGE3.jpg", "oroville_DAMAGE4.jpg","oroville_DAMAGE2.jpg"].map(s => "./assets/graphics/" + s);
@@ -120,31 +120,31 @@ var swap = function() {
     //fade in once it's loaded
     damage.one("load", function() {
       //once fade completes, schedule the next swap
-      damage.fadeIn(fadeTime, () => setTimeout(swap, timoutTime));
+      damage.fadeIn(fadeTime, () => setTimeout(swap, timeoutTime));
     });
   })
 };
-
-//promise version
-var swap = function() {
-  //start the chain
-  damage.fadeOut(fadeTime).promise().then(function() {
-    //get the next image
-    iD = (iD + 1) % urls.length; // hello modulo, my old friend
-    //update the src
-    damage.attr("src", urls[iD]);
-    //resolve this promise on load
-    var loaded = $.Deferred();
-    damage.one("load", () => loaded.resolve());
-    return loaded.promise();
-  }).then(function() {
-    //now fade in and wait for that to conclude
-    return damage.fadeIn(fadeTime).promise();
-  }).then(function() {
-    //schedule the next animation
-    setTimeout(swap, timeoutTime);
-  })
-};
+//
+// //promise version
+// var swap = function() {
+//   //start the chain
+//   damage.fadeOut(fadeTime).promise().then(function() {
+//     //get the next image
+//     iD = (iD + 1) % urls.length; // hello modulo, my old friend
+//     //update the src
+//     damage.attr("src", urls[iD]);
+//     //resolve this promise on load
+//     var loaded = $.Deferred();
+//     damage.one("load", () => loaded.resolve());
+//     return loaded.promise();
+//   }).then(function() {
+//     //now fade in and wait for that to conclude
+//     return damage.fadeIn(fadeTime).promise();
+//   }).then(function() {
+//     //schedule the next animation
+//     setTimeout(swap, timeoutTime);
+//   })
+// };
 
 //either way
 setTimeout(swap, timeoutTime);
@@ -154,7 +154,7 @@ setTimeout(swap, timeoutTime);
 // -----------------------------------------------------------------------------
 
 var erosion = $("#erosion-graphic");
-var iE = 0;
+var iE = -1;
 //prepend the assets folder to these
 var erosion_urls = ["reservoirs_slideshow_erosion_1_NEW.jpg","reservoirs_slideshow_erosion_2_NEW.jpg"].map(s => "./assets/graphics/" + s);
 
@@ -173,26 +173,26 @@ var swap_erosion = function() {
   })
 };
 
-//promise version
-var swap_erosion = function() {
-  //start the chain
-  erosion.fadeOut(fadeTime).promise().then(function() {
-    //get the next image
-    iE = (iE + 1) % erosion_urls.length; // hello modulo, my old friend
-    //update the src
-    erosion.attr("src", erosion_urls[iE]);
-    //resolve this promise on load
-    var loaded = $.Deferred();
-    erosion.one("load", () => loaded.resolve());
-    return loaded.promise();
-  }).then(function() {
-    //now fade in and wait for that to conclude
-    return erosion.fadeIn(fadeTime).promise();
-  }).then(function() {
-    //schedule the next animation
-    setTimeout(swap_erosion, timeoutTime);
-  })
-};
+// //promise version
+// var swap_erosion = function() {
+//   //start the chain
+//   erosion.fadeOut(fadeTime).promise().then(function() {
+//     //get the next image
+//     iE = (iE + 1) % erosion_urls.length; // hello modulo, my old friend
+//     //update the src
+//     erosion.attr("src", erosion_urls[iE]);
+//     //resolve this promise on load
+//     var loaded = $.Deferred();
+//     erosion.one("load", () => loaded.resolve());
+//     return loaded.promise();
+//   }).then(function() {
+//     //now fade in and wait for that to conclude
+//     return erosion.fadeIn(fadeTime).promise();
+//   }).then(function() {
+//     //schedule the next animation
+//     setTimeout(swap_erosion, timeoutTime);
+//   })
+// };
 
 //either way
 setTimeout(swap_erosion, timeoutTime);
@@ -202,7 +202,7 @@ setTimeout(swap_erosion, timeoutTime);
 // -----------------------------------------------------------------------------
 
 var flow = $("#flow-graphic");
-var iF = 0;
+var iF = -1;
 //prepend the assets folder to these
 var flow_urls = ["oroville_overhead_inflowNEW.jpg", "oroville_overhead_outflowNEW.jpg"].map(s => "./assets/graphics/" + s);
 
@@ -221,26 +221,26 @@ var swap_flow = function() {
   })
 };
 
-//promise version
-var swap_flow = function() {
-  //start the chain
-  flow.fadeOut(fadeTime).promise().then(function() {
-    //get the next image
-    iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
-    //update the src
-    flow.attr("src", flow_urls[iF]);
-    //resolve this promise on load
-    var loaded = $.Deferred();
-    flow.one("load", () => loaded.resolve());
-    return loaded.promise();
-  }).then(function() {
-    //now fade in and wait for that to conclude
-    return flow.fadeIn(fadeTime).promise();
-  }).then(function() {
-    //schedule the next animation
-    setTimeout(swap_flow, timeoutTime);
-  })
-};
+// //promise version
+// var swap_flow = function() {
+//   //start the chain
+//   flow.fadeOut(fadeTime).promise().then(function() {
+//     //get the next image
+//     iF = (iF + 1) % flow_urls.length; // hello modulo, my old friend
+//     //update the src
+//     flow.attr("src", flow_urls[iF]);
+//     //resolve this promise on load
+//     var loaded = $.Deferred();
+//     flow.one("load", () => loaded.resolve());
+//     return loaded.promise();
+//   }).then(function() {
+//     //now fade in and wait for that to conclude
+//     return flow.fadeIn(fadeTime).promise();
+//   }).then(function() {
+//     //schedule the next animation
+//     setTimeout(swap_flow, timeoutTime);
+//   })
+// };
 
 //either way
 setTimeout(swap_flow, timeoutTime);
