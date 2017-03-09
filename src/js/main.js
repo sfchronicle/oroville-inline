@@ -1042,7 +1042,27 @@ function draw_future() {
         .attr("y", function(d) { return y(+d.capacity/1000); })
         .attr("height", function(d) {
           return height - y(+d.capacity/1000);
-        });
+        })
+        .on("mouseover", function(d) {
+          future_tooltip.html(`
+              <div>Reservoir: <b>${d.name}</b></div>
+              <div>Storage: <b>${formatthousands(Math.round(d.storage/1000))} TAF</b></div>
+              <div>Capacity: <b>${formatthousands(Math.round(d.capacity/1000))} TAF</b></div>
+          `);
+          future_tooltip.style("visibility", "visible");
+        })
+        .on("mousemove", function(d) {
+          if (screen.width <= 480) {
+            return future_tooltip
+              .style("top", (d3.event.pageY+20)+"px")
+              .style("left",d3.event.pageX/2+20+"px");
+          } else {
+            return future_tooltip
+              .style("top", (d3.event.pageY+20)+"px")
+              .style("left",(d3.event.pageX-80)+"px");
+          }
+        })
+        .on("mouseout", function(){return future_tooltip.style("visibility", "hidden");});
 
     svgBars.selectAll("bar")
         .data(barData.data)
