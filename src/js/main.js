@@ -108,7 +108,7 @@ var damage = $("#damage-graphic");
 var iD = -1;
 
 // these are the images
-var urls = ["oroville_damagedone_powerplant_GR.png", "oroville_overhead_base_spillandplant.png","oroville_overhead_base_all.png"].map(s => "./assets/graphics/" + s);
+var urls = ["oroville_damagedone_powerplant_GR.jpg?v=2", "oroville_overhead_base_spillandplant.jpg?v=2","oroville_overhead_base_all.jpg?v=2"].map(s => "./assets/graphics/" + s);
 
 // callback version
 var swap = function() {
@@ -135,7 +135,7 @@ setTimeout(swap, timeoutTime);
 var erosion = $("#erosion-graphic");
 var iE = -1;
 //prepend the assets folder to these
-var erosion_urls = ["reservoirs_slideshow_erosion_arrow.png","reservoirs_slideshow_erosion_base.png"].map(s => "./assets/graphics/" + s);
+var erosion_urls = ["reservoirs_slideshow_erosion_arrow.jpg?v=2","reservoirs_slideshow_erosion_base.jpg?v=2"].map(s => "./assets/graphics/" + s);
 
 //callback version
 var swap_erosion = function() {
@@ -162,7 +162,7 @@ setTimeout(swap_erosion, timeoutTime);
 var flow = $("#flow-graphic");
 var iF = -1;
 //prepend the assets folder to these
-var flow_urls = ["oroville_overhead_inflow.png", "oroville_overhead_outflow.png"].map(s => "./assets/graphics/" + s);
+var flow_urls = ["oroville_overhead_inflow.jpg?v=2", "oroville_overhead_outflow.jpg?v=2"].map(s => "./assets/graphics/" + s);
 
 //callback version
 var swap_flow = function() {
